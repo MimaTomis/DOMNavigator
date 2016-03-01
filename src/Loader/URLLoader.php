@@ -1,6 +1,8 @@
 <?php
 namespace DOMNavigator\Loader;
 
+use DOMNavigator\Exception\InvalidArgumentException;
+
 class URLLoader implements LoaderInterface
 {
 	/**
@@ -29,6 +31,9 @@ class URLLoader implements LoaderInterface
 	 */
 	public function load($content, $encoding = 'utf-8', $type = self::TYPE_HTML)
 	{
+		if (!filter_var($content, FILTER_VALIDATE_URL))
+			throw new InvalidArgumentException();
+
 		return $this->fileLoader->load($content, $encoding, $type);
 	}
 }

@@ -8,9 +8,10 @@ class Navigator implements NavigatorInterface
 {
     public function __construct(array $loaders, FinderInterface $finder)
     {
+
     }
 
-    public function load($path)
+    public function load($content, $encoding = 'utf-8', $type = LoaderInterface::TYPE_HTML)
     {
 
     }
