@@ -4,6 +4,9 @@
     "require": {
         "php": ">=5.4"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8.0"
+    },
     "license": "MIT",
     "authors": [
         {
@@ -15,6 +18,5 @@
         "psr-4": {
             "DOMNavigator\\": [ "src/" ]
         }
-    },
-    "minimum-stability": "dev"
+    }
 }
