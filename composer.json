@@ -1,5 +1,5 @@
 {
-    "name": "mima/dom",
+    "name": "mima/dom-navigator",
     "description": "Simple wrapper for find elements in DOMNode. Adds XPath, Selector (like jQuery) mechanism to find elements, allow create own implementation.",
     "require": {
         "php": ">=5.4"
@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Mima\\Dom\\": [ "src/" ]
+            "DOMNavigator\\": [ "src/" ]
         }
     },
     "minimum-stability": "dev"

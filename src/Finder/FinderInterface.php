@@ -1,7 +1,7 @@
 <?php
-namespace Mima\DOM\Finder;
-
-interface FinderInterface
-{
-	public function find();
-}
+/**
+ * Created by PhpStorm.
+ * User: dmitriy
+ * Date: 29.02.16
+ * Time: 21:37
+ */
