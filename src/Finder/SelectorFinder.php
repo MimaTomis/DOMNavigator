@@ -1,7 +1,7 @@
 <?php
 namespace DOMNavigator\Finder;
 
-interface FinderInterface
+class SelectorFinder implements FinderInterface
 {
     /**
      * Find nodes in context by query
@@ -11,5 +11,8 @@ interface FinderInterface
      *
      * @return \DOMNodeList
      */
-    public function find($query, \DOMNode $context);
+    public function find($query, \DOMNode $context)
+    {
+        // TODO: Implement find() method.
+    }
 }
