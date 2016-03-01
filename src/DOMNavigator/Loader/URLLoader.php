@@ -31,7 +31,7 @@ class URLLoader implements LoaderInterface
 	 */
 	public function load($content, $encoding = 'utf-8', $type = self::TYPE_HTML)
 	{
-		if (!filter_var($content, FILTER_VALIDATE_URL))
+		if (filter_var($content, FILTER_VALIDATE_URL) === false)
 			throw new InvalidArgumentException();
 
 		return $this->fileLoader->load($content, $encoding, $type);

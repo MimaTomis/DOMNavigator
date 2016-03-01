@@ -35,6 +35,6 @@ class StringLoader implements LoaderInterface
 	 */
 	protected function normalizeXMLString($content, $encoding)
 	{
-		return !preg_match('/^<\?xml/i', trim($content)) ? sprintf('<?xml encoding="%s">%s', $encoding, $content) : $content;
+		return !preg_match('/^<\?xml/i', trim($content)) ? sprintf('<?xml version="1.0" encoding="%s"?>%s', $encoding, $content) : $content;
 	}
 }

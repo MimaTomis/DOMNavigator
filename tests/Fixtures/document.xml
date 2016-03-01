@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<document>
+    <body>
+        <header>Body header</header>
+        <content>
+            <paragraph>Paragraph 1</paragraph>
+            <paragraph>Paragraph 2</paragraph>
+            <paragraph>Paragraph 3</paragraph>
+        </content>
+        <link href="http://test.ru">Link</link>
+    </body>
+    <footer>
+        <list>
+            <item>Item 1</item>
+            <item>Item 2</item>
+        </list>
+    </footer>
+</document>
