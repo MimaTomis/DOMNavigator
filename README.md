@@ -1,4 +1,3 @@
-**DOM WRAPPER TO FIND**
+# DOMNavigator
 
-Simple wrapper for find elements in DOMNode. Adds XPath, Selector (like jQuery) mechanism to find elements, allow create own implementation.
-
+Library for easy loading HTML/XML documents and navigate through them.
