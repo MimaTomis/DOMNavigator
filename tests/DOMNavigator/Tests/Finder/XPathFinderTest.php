@@ -23,6 +23,18 @@ class XPathFinderTest extends \PHPUnit_Framework_TestCase
 		$this->finder->find('//body');
 	}
 
+	public function testFindUnknownElement()
+	{
+		$document = new \DOMDocument();
+		$document->load(DOMNAVIGATOR_FIXTURES_DIR.'/document.xml');
+
+		$this->finder->setDocument($document);
+		$elements = $this->finder->find('//xzkakoyelement');
+
+		$this->assertNotNull($elements);
+		$this->assertEquals(0, $elements->length);
+	}
+
 	/**
 	 * @dataProvider xpathHTMLProvider
 	 *
