@@ -1,6 +1,8 @@
 <?php
 namespace DOMNavigator\Loader;
 
+use DOMNavigator\Exception\DOMNavigatorException;
+
 class CompositeLoader implements LoaderInterface
 {
 	/**
@@ -32,17 +34,24 @@ class CompositeLoader implements LoaderInterface
 	 * Load document by path.
 	 *
 	 * @param string $content
-	 * @param string $encoding
-	 * @param int $type
+	 * @param string $type
 	 *
+	 * @param string $encoding
 	 * @return \DOMDocument
+	 * @throws \Exception
 	 */
-	public function load($content, $encoding = 'utf-8', $type = self::TYPE_HTML)
+	public function load($content, $type = self::TYPE_HTML, $encoding = 'utf-8')
 	{
 		if (!empty($this->loaders)) {
-			foreach ($this->loaders as $loader)
-				if ($document = $loader->load($content, $encoding, $type))
-					return $document;
+			foreach ($this->loaders as $loader) {
+				try {
+					if ($document = $loader->load($content, $encoding, $type))
+						return $document;
+				} catch (\Exception $e) {
+					if (!($e instanceof DOMNavigatorException))
+						throw $e;
+				}
+			}
 		}
 
 		return null;

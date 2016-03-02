@@ -40,6 +40,16 @@ class URLLoaderTest extends \PHPUnit_Framework_TestCase
 		$this->loader->load($url);
 	}
 
+	/**
+	 * @expectedException \DOMNavigator\Exception\UnexpectedValueException
+	 * @dataProvider unknownFileProvider
+	 * @param string $url
+	 */
+	public function testLoadUnknownFile($url)
+	{
+		$this->loader->load($url);
+	}
+
 	public function urlProvider()
 	{
 		return [
@@ -54,6 +64,14 @@ class URLLoaderTest extends \PHPUnit_Framework_TestCase
 		return [
 			['http:google.com'],
 			['://facebook.com/']
+		];
+	}
+
+	public function unknownFileProvider()
+	{
+		return [
+			['http://google.com/how/get/this/file'],
+			['http://yandex.ru/this/page/not/found']
 		];
 	}
 }
