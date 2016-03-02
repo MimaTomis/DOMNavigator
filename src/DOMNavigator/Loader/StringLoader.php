@@ -14,6 +14,7 @@ class StringLoader implements LoaderInterface
 	 */
 	public function load($content, $type = self::TYPE_HTML, $encoding = 'utf-8')
 	{
+		$previousValue = libxml_use_internal_errors(TRUE);
 		$document = new \DOMDocument('1.0', $encoding);
 
 		if ($type == self::TYPE_XML) {
@@ -21,6 +22,9 @@ class StringLoader implements LoaderInterface
 			$document->loadXML($content);
 		} else
 			$document->loadHTML($content);
+
+		libxml_clear_errors();
+		libxml_use_internal_errors($previousValue);
 
 		return $document;
 	}

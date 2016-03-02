@@ -32,12 +32,16 @@ class FileLoader implements LoaderInterface
 				throw new LogicException(sprintf('Given file %s is not %s', $content, $type));
 		}
 
+		$previousValue = libxml_use_internal_errors(TRUE);
 		$document = new \DOMDocument('1.0', $encoding);
 
 		if ($type == self::TYPE_XML)
 			$document->load($content);
 		else
 			$document->loadHTMLFile($content);
+
+		libxml_clear_errors();
+		libxml_use_internal_errors($previousValue);
 
 		return $document;
 	}
