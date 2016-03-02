@@ -109,7 +109,7 @@ class XPathFinderTest extends \PHPUnit_Framework_TestCase
 		$elements = $this->finder->find($query, $context);
 
 		$this->assertEquals($count, $elements->length);
-		$this->assertContainsOnlyInstancesOf(\DOMNode::class, $elements);
+		$this->assertContainsOnlyInstancesOf('\DOMNode', $elements);
 
 		foreach ($elements as $element) {
 			$nodeName = mb_strtolower($element->nodeName);
