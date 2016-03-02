@@ -24,16 +24,16 @@ class URLLoader implements LoaderInterface
 	 * Load document by url.
 	 *
 	 * @param string $content
+	 * @param string $type
 	 * @param string $encoding
-	 * @param int $type
 	 *
 	 * @return \DOMDocument
 	 */
-	public function load($content, $encoding = 'utf-8', $type = self::TYPE_HTML)
+	public function load($content, $type = self::TYPE_HTML, $encoding = 'utf-8')
 	{
 		if (filter_var($content, FILTER_VALIDATE_URL) === false)
-			throw new InvalidArgumentException();
+			throw new InvalidArgumentException(sprintf('First argument for %s:%s must be url only. Given %s.', __CLASS__, __METHOD__, $content));
 
-		return $this->fileLoader->load($content, $encoding, $type);
+		return $this->fileLoader->load($content, $type, $encoding);
 	}
 }

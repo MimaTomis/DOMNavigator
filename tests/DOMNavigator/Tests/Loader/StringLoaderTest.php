@@ -23,7 +23,7 @@ class StringLoaderTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function testLoad($content, $type)
 	{
-		$document = $this->loader->load($content, 'utf-8', $type);
+		$document = $this->loader->load($content, $type);
 
 		$this->assertNotNull($document);
 		$this->assertInstanceOf(\DOMDocument::class, $document);
@@ -32,7 +32,7 @@ class StringLoaderTest extends \PHPUnit_Framework_TestCase
 	public function testLoadWithMissedXmlTag()
 	{
 		$content = file_get_contents(DOMNAVIGATOR_FIXTURES_DIR.'/document-with-missed.xml');
-		$document = $this->loader->load($content, 'utf-8', LoaderInterface::TYPE_XML);
+		$document = $this->loader->load($content, LoaderInterface::TYPE_XML);
 
 		$this->assertNotNull($document);
 		$this->assertInstanceOf(\DOMDocument::class, $document);

@@ -59,7 +59,7 @@ class Navigator implements NavigatorInterface
      */
     public function loadHTML($content, $encoding = 'utf-8')
     {
-        $document = $this->loader->load($content, $encoding, LoaderInterface::TYPE_HTML);
+        $document = $this->loader->load($content, LoaderInterface::TYPE_HTML, $encoding);
         $this->finder->setDocument($document);
 
         return $this;
@@ -75,7 +75,7 @@ class Navigator implements NavigatorInterface
      */
     public function loadXML($content, $encoding = 'utf-8')
     {
-        $document = $this->loader->load($content, $encoding, LoaderInterface::TYPE_XML);
+        $document = $this->loader->load($content, LoaderInterface::TYPE_XML, $encoding);
         $this->finder->setDocument($document);
 
         return $this;
