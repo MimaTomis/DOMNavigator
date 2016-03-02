@@ -2,6 +2,7 @@
 namespace DOMNavigator\Loader;
 
 use DOMNavigator\Exception\DOMNavigatorException;
+use DOMNavigator\Exception\LogicException;
 
 class CompositeLoader implements LoaderInterface
 {
@@ -42,15 +43,16 @@ class CompositeLoader implements LoaderInterface
 	 */
 	public function load($content, $type = self::TYPE_HTML, $encoding = 'utf-8')
 	{
-		if (!empty($this->loaders)) {
-			foreach ($this->loaders as $loader) {
-				try {
-					if ($document = $loader->load($content, $encoding, $type))
-						return $document;
-				} catch (\Exception $e) {
-					if (!($e instanceof DOMNavigatorException))
-						throw $e;
-				}
+		if (empty($this->loaders))
+			throw new LogicException('Not set any loaders');
+
+		foreach ($this->loaders as $loader) {
+			try {
+				if ($document = $loader->load($content, $type, $encoding))
+					return $document;
+			} catch (\Exception $e) {
+				if (!($e instanceof DOMNavigatorException))
+					throw $e;
 			}
 		}
 
