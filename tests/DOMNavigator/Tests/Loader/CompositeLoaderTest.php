@@ -78,7 +78,7 @@ class CompositeLoaderTest extends \PHPUnit_Framework_TestCase
 		$document = $loader->load($file, $type);
 
 		$this->assertNotNull($document);
-		$this->assertInstanceOf(\DOMDocument::class, $document);
+		$this->assertInstanceOf('\DOMDocument', $document);
 	}
 
 	/**
@@ -98,15 +98,15 @@ class CompositeLoaderTest extends \PHPUnit_Framework_TestCase
 			$document = $compositeLoader->load($resource);
 
 			$this->assertNotNull($document);
-			$this->assertInstanceOf(\DOMDocument::class, $document);
+			$this->assertInstanceOf('\DOMDocument', $document);
 		}
 	}
 
 	public function loaderMockProvider()
 	{
-		$loader1 = $this->getMock(LoaderInterface::class);
-		$loader2 = $this->getMock(LoaderInterface::class);
-		$loader3 = $this->getMock(LoaderInterface::class);
+		$loader1 = $this->getMock('DOMNavigator\Loader\LoaderInterface');
+		$loader2 = $this->getMock('DOMNavigator\Loader\LoaderInterface');
+		$loader3 = $this->getMock('DOMNavigator\Loader\LoaderInterface');
 
 		return [
 			[$loader1, $loader2, $loader3],

@@ -27,7 +27,7 @@ class URLLoaderTest extends \PHPUnit_Framework_TestCase
 		$document = $this->loader->load($url, $type);
 
 		$this->assertNotNull($document);
-		$this->assertInstanceOf(\DOMDocument::class, $document);
+		$this->assertInstanceOf('\DOMDocument', $document);
 	}
 
 	/**

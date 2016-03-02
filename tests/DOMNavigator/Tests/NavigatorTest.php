@@ -37,7 +37,7 @@ class NavigatorTest extends \PHPUnit_Framework_TestCase
 		$elements = $this->navigator->navigate($query);
 
 		$this->assertGreaterThan(0, $elements->length);
-		$this->assertContainsOnlyInstancesOf(\DOMNode::class, $elements);
+		$this->assertContainsOnlyInstancesOf('\DOMNode', $elements);
 
 		foreach ($elements as $element)
 			$this->assertEquals($name, $element->nodeName);
@@ -60,7 +60,7 @@ class NavigatorTest extends \PHPUnit_Framework_TestCase
 		$elements = $this->navigator->navigate($query, $context);
 
 		$this->assertGreaterThan(0, $elements->length);
-		$this->assertContainsOnlyInstancesOf(\DOMNode::class, $elements);
+		$this->assertContainsOnlyInstancesOf('\DOMNode', $elements);
 
 		foreach ($elements as $element)
 			$this->assertEquals($name, $element->nodeName);

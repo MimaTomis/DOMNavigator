@@ -26,7 +26,7 @@ class FileLoaderTest extends \PHPUnit_Framework_TestCase
 		$document = $this->loader->load($file, $type);
 
 		$this->assertNotNull($document);
-		$this->assertInstanceOf(\DOMDocument::class, $document);
+		$this->assertInstanceOf('\DOMDocument', $document);
 	}
 
 	/**
