@@ -10,7 +10,7 @@
         <link href="http://test.ru">Link</link>
     </body>
     <footer>
-        <list>
+        <list data-name="list">
             <item>Item 1</item>
             <item>Item 2</item>
         </list>
