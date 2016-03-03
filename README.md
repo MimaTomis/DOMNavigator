@@ -13,6 +13,8 @@ It allows you to implement your own algorithm search elements.
  - [Installation](#installation)
  - [Use Navigator](#use-navigator)
  - [Create custom Finder](#create-custom-finder)
+ - [Create custom Loader](#create-custom-loader)
+ - [Use CompositeLoader](#use-compositeloader)
 
 ### Installation
 
@@ -60,17 +62,60 @@ After loading you may use navigate method for search elements in document.
 
 ```php
 // return \DOMNodeList with list of found elements
-$nodeList = $navigator->navigate('//div[@id=phone]');
+$addressNodes = $navigator->navigate("//div[@id='address']");
 ```
 
-Navigate method always return \DOMNodeList. If you want find out number of found elements, follow to this example:
+Navigate method always return \DOMNodeList. It is possible to search in the context of an element:
 
 ```php
-if ($nodeList->length > 0) {
+// $addresNodes is a list of element from previous example
+$ciytNodes = $navigator->navigate("*[@id='city']", $addressNodes->item(0));
+```
+
+If you want find out number of found elements, follow to this example:
+
+```php
+if ($ciytNodes->length > 0) {
     ...
 }
 ```
 
 ### Create custom Finder
 
-All Finders need implement `DOMNavigato\Finder\FinderInterface`.
+All finders need implement interface `DOMNavigator\Finder\FinderInterface`.
+
+### Create custom Loader
+
+All loaders need implement `DOMNavigator\Finder\LoaderInterface`.
+
+### Use CompositeLoader
+
+If you are not sure of the source through the document, you can use CompositeLoader:
+
+```php
+use DOMNavigator\Loader\CompositeLoader;
+use DOMNavigator\Loader\URLLoader;
+use DOMNavigator\Loader\FileLoader;
+use DOMNavigator\Loader\StringLoader;
+
+
+$stringLoader = new StringLoader();
+$urlLoader = new URLLoader($stringLoader);
+$fileLoader = new FileLoader();
+
+// set loaders with construct
+$compositeLoader = new CompositeLoader([$stringLoader, $urlLoader]);
+
+// set loader with method
+$compositeLoader->addLoader($fileLoader);
+```
+
+The next step is assigning the loader in the navigator:
+
+```php
+// as first argument in constructor
+$navigator = new Navigator($compositeLoader, $finder);
+
+// or using a special method
+$navigator->setLoader($compositeLoader);
+```
