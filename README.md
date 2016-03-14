@@ -69,13 +69,13 @@ Navigate method always return \DOMNodeList. It is possible to search in the cont
 
 ```php
 // $addresNodes is a list of element from previous example
-$ciytNodes = $navigator->navigate("*[@id='city']", $addressNodes->item(0));
+$cityNodes = $navigator->navigate("*[@id='city']", $addressNodes->item(0));
 ```
 
 If you want find out number of found elements, follow to this example:
 
 ```php
-if ($ciytNodes->length > 0) {
+if ($cityNodes->length > 0) {
     ...
 }
 ```
