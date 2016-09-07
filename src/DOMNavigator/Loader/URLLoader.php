@@ -10,15 +10,21 @@ class URLLoader implements LoaderInterface
 	 * @var StringLoader
 	 */
 	private $stringLoader;
+	/**
+	 * @var array
+	 */
+	private $options;
 
 	/**
 	 * Aggregate with FileLoader for delegate load method
 	 *
 	 * @param StringLoader $stringLoader
+	 * @param array $options
 	 */
-	public function __construct(StringLoader $stringLoader)
+	public function __construct(StringLoader $stringLoader, array $options = [])
 	{
 		$this->stringLoader = $stringLoader;
+		$this->options = $options;
 	}
 
 	/**
@@ -53,6 +59,14 @@ class URLLoader implements LoaderInterface
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+
+		if (!empty($this->options['cookieSavePath']) && is_dir($this->options['cookieSavePath'])) {
+			$cookieSavePath = $this->options['cookieSavePath'].'/dmn-cookies';
+
+			curl_setopt($ch, CURLOPT_COOKIESESSION, true );
+			curl_setopt($ch, CURLOPT_COOKIEJAR, $cookieSavePath);
+			curl_setopt($ch, CURLOPT_COOKIEFILE, $cookieSavePath );
+		}
 
 		$result = curl_exec($ch);
 		$status = curl_getinfo($ch);

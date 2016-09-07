@@ -17,6 +17,13 @@ class URLLoaderTest extends \PHPUnit_Framework_TestCase
 		$this->loader = new URLLoader(new StringLoader());
 	}
 
+	public function tearDown()
+	{
+		$cookieFile = DOMNAVIGATOR_FIXTURES_DIR.'/dmn-cookies';
+
+		file_exists($cookieFile) && unlink($cookieFile);
+	}
+
 	/**
 	 * @dataProvider urlProvider
 	 * @param string $url
@@ -48,6 +55,19 @@ class URLLoaderTest extends \PHPUnit_Framework_TestCase
 	public function testLoadUnknownFile($url)
 	{
 		$this->loader->load($url);
+	}
+
+	public function testLoadWithCookieUsing()
+	{
+		$url = 'http://google.com';
+		$type = LoaderInterface::TYPE_HTML;
+
+		$this->loader = new URLLoader(new StringLoader(), [
+			'cookieSavePath' => DOMNAVIGATOR_FIXTURES_DIR
+		]);
+
+		$this->loader->load($url, $type);
+		$this->assertTrue(file_exists(DOMNAVIGATOR_FIXTURES_DIR.'/dmn-cookies'));
 	}
 
 	public function urlProvider()
