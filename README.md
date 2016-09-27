@@ -1,6 +1,6 @@
 # PHP DOMNavigator
 
-[![Build Status](https://travis-ci.org/MimaTomis/DOMNavigator.svg)](https://travis-ci.org/MimaTomis/DOMNavigator)
+[![Build Status](https://travis-ci.org/MimaTomis/dom-navigator.svg)](https://travis-ci.org/MimaTomis/dom-navigator)
 
 ## About library
 
